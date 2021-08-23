@@ -4,18 +4,23 @@
   <meta charset="utf-8">
   
   
-  <title>Archives | sam young</title>
+  <title>过于长文本超过容器之后显示问题 | sam young</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="记录日常前端记录">
-<meta property="og:type" content="website">
-<meta property="og:title" content="sam young">
-<meta property="og:url" content="http://example.com/archives/index.html">
+  <meta name="description" content="word-break:normal; 1&lt;p class&#x3D;&quot;test1&quot;&gt;This is a veryveryveryveryveryveryveryveryveryvery long paragraph.&lt;&#x2F;p&gt;  在这里的话如果一些单词过长用word-break:normal;只会在单词结束后才换行，使用break-all    允许在单词内换行。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="过于长文本超过容器之后显示问题">
+<meta property="og:url" content="http://example.com/2020/08/25/css-text/index.html">
 <meta property="og:site_name" content="sam young">
-<meta property="og:description" content="记录日常前端记录">
+<meta property="og:description" content="word-break:normal; 1&lt;p class&#x3D;&quot;test1&quot;&gt;This is a veryveryveryveryveryveryveryveryveryvery long paragraph.&lt;&#x2F;p&gt;  在这里的话如果一些单词过长用word-break:normal;只会在单词结束后才换行，使用break-all    允许在单词内换行。">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/01.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200728114939433.png">
+<meta property="article:published_time" content="2020-08-24T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-08-23T09:26:18.526Z">
 <meta property="article:author" content="young">
-<meta property="article:tag" content="前端技术">
+<meta property="article:tag" content="css html">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/01.png">
   
     <link rel="alternate" href="/atom.xml" title="sam young" type="application/atom+xml">
   
@@ -76,39 +81,52 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/08/25/css-text/" class="archive-article-date">
-  <time class="dt-published" datetime="2020-08-24T16:00:00.000Z" itemprop="datePublished">Aug 25</time>
+        <section id="main"><article id="post-css-text" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/08/25/css-text/" class="article-date">
+  <time class="dt-published" datetime="2020-08-24T16:00:00.000Z" itemprop="datePublished">2020-08-25</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/08/25/css-text/">过于长文本超过容器之后显示问题</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      过于长文本超过容器之后显示问题
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <hr>
+<p><img src="/images/01.png" alt="在这里插入图片描述"><br>word-break:normal;</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;test1&quot;</span>&gt;</span>This is a veryveryveryveryveryveryveryveryveryvery long paragraph.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在这里的话如果一些单词过长用word-break:normal;只会在单词结束后才换行，使用break-all    允许在单词内换行。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200728114939433.png" alt="效果图"><br>当然，你也可以使用overflow:hidden;将多余的超过容器的直接隐藏了</p>
+<p>或者<br>  /* 内容过长显示成省略号（内容显示为一行） */</p>
+<p>  white-space: nowrap;/<em>设置不换行</em>/<br>  overflow: hidden; /<em>设置隐藏</em>/<br> text-overflow: ellipsis; /<em>设置隐藏部分为省略号</em>/</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/08/25/css-text/" data-id="cksofrbso00007oovgb25esmu" data-title="过于长文本超过容器之后显示问题" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css-html/" rel="tag">css html</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
 </section>
