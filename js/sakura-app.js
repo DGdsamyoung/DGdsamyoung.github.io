@@ -397,20 +397,6 @@ function scrollBar () {
       var result = parseInt(s / (a - b) * 100)
       $('#bar').css('width', result + '%')
       if (false) {
-        if (result >= 0 && result <= 19) {
-          $('#bar').css('background', '#cccccc')
-        }
-        if (result >= 20 && result <= 39) { $('#bar').css('background', '#50bcb6') }
-        if (result >= 40 && result <= 59) {
-          $('#bar').css('background', '#85c440')
-        }
-        if (result >= 60 && result <= 79) {
-          $('#bar').css('background', '#f2b63c')
-        }
-        if (result >= 80 && result <= 99) { $('#bar').css('background', '#FF0000') }
-        if (result == 100) {
-          $('#bar').css('background', '#5aaadb')
-        }
       } else {
         $('#bar').css('background', 'orange')
       }
@@ -556,25 +542,34 @@ $(document).ready(function () {
   add_upload_tips()
 })
 
-function nextBG () {
+function nextBG (random) {
   bgindex = bgindex + 1
   console.log(bg[Math.abs(bgindex % bg.length)])
-  $('.centerbg').css('background-image', 'url("' + bg[Math.abs(bgindex % bg.length)] + '")')
+    // $('.centerbg').css('background-image', 'url("' + bg[Math.abs(bgindex % bg.length)] + '")')
+  $('.centerbg').css('background-image', `url(http://api.btstu.cn/sjbz/?lx=dongman&time=${random})`)
 }
 
-function preBG () {
-  bgindex = bgindex - 1
-  console.log(bg[Math.abs(bgindex % bg.length)])
-  $('.centerbg').css('background-image', 'url("' + bg[Math.abs(bgindex % bg.length)] + '")')
+function preBG (random) {
+  // bgindex = bgindex - 1
+  // console.log(bg[Math.abs(bgindex % bg.length)])
+  // $('.centerbg').css('background-image', 'url("' + bg[Math.abs(bgindex % bg.length)] + '")')
+  $('.centerbg').css('background-image', `url(http://api.btstu.cn/sjbz/?lx=dongman&time=${random})`)
 }
+
 $(document).ready(function () {
-  var bgindex = Math.floor(Math.random() * bg.length)
-  $('.centerbg').css('background-image', 'url("' + bg[bgindex] + '")')
+
+  // $('.centerbg').css('background-image', 'url("' + bg[bgindex] + '")')
+  $('.centerbg').css('background-image', 'url(http://api.btstu.cn/sjbz/?lx=dongman)')
+
   $('#bg-next').click(function () {
-    nextBG()
+    var bgindex = Math.floor(Math.random() * new Date())
+    nextBG(bgindex)
+
   })
+
   $('#bg-pre').click(function () {
-    preBG()
+    var bgindex = Math.floor(Math.random() * new Date())
+    preBG(bgindex)
   })
 })
 if (document.body.clientWidth <= 860 && !window.is_app) {
@@ -638,12 +633,6 @@ function timeSeriesReload (flag) {
           $(this).children('.al_post_list').show(400)
           return false
         })
-        if (false) {
-          $('#archives li.al_li').mouseout(function () {
-            $(this).children('.al_post_list').hide(400)
-            return false
-          })
-        }
       }
       var al_expand_collapse_click = 0
       $('#al_expand_collapse').click(function () {
@@ -1609,9 +1598,10 @@ $(function () {
   $(document).on('click', '.specsZan', function () {
     $(this).postLike()
   })
-  console.log('%c Mashiro %c', 'background:#24272A; color:#ffffff', '', 'https://2heng.xin/')
-  console.log('%c hojun %c', 'background:#24272A; color:#ffffff', '', 'https://www.hojun.cn/')
-  console.log('%c Github %c', 'background:#24272A; color:#ffffff', '', 'https://github.com/honjun/hexo-theme-sakura')
+
+  // console.log('%c Mashiro %c', 'background:#24272A; color:#ffffff', '', 'https://2heng.xin/')
+  // console.log('%c hojun %c', 'background:#24272A; color:#ffffff', '', 'https://www.hojun.cn/')
+  // console.log('%c Github %c', 'background:#24272A; color:#ffffff', '', 'https://github.com/honjun/hexo-theme-sakura')
 })
 var isWebkit = navigator.userAgent.toLowerCase().indexOf('webkit') > -1,
   isOpera = navigator.userAgent.toLowerCase().indexOf('opera') > -1,
