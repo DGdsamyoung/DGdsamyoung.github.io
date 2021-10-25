@@ -1,0 +1,41 @@
+.p-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.p-item {
+  flex:1;
+  height:40vh;
+  transition: all 0.5s;
+  background-size: 100% 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.p-item .p-item__mask {
+  position:absolute;
+  left:0;
+  top:0;
+  right: 0;
+  bottom: 0;
+  background: rgba(66, 66, 66, 0.7);
+  transition: all 0.5s;
+}
+
+.p-item .p-item__text {
+  position:absolute;
+  left:0;
+  top:-100px;
+  right: 0;
+  text-align: center;
+  font-size: 40px;
+  font-weight: bolder;
+  color:#fff;
+  transition: all 0.5s;
+  text-shadow: 2px 2px 10px #000;
+}
+
+.p-item:hover .p-item__text{
+  top:45%;
+}
