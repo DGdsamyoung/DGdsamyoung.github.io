@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">donate | sam young</title>
+  <title itemprop="name">js 剩余参数 数组解构 | sam young</title>
   
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -360,107 +360,286 @@
   </div>
 </header>
 
-      <link rel="stylesheet" href="/css/donate.css">
-<div class="pattern-center-blank">
-</div>
-<div class="pattern-center ">
-  <div class="pattern-attachment-img">
-    <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.4/img/banner/donate.jpg" src="https://cdn.jsdelivr.net/gh/DGdsamyoung/CDN@1.04/image/loading/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.4/img/banner/donate.jpg" class="lazyload" onerror="imgError(this,3)" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;">
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+<script>
+  function test() {
+      return '123'
+  }
+  console.log(test())
+</script>
+
+
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" src="https://cdn.jsdelivr.net/gh/DGdsamyoung/CDN@1.04/image/loading/orange.progress-bar-stripe-loader.svg" data-src="http://www.dmoe.cc/random.php?time=1635171361000">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      js 剩余参数 数组解构</h1>
+      <p class="entry-census">
+        <span>
+          <a target="_blank" rel="noopener" href="https://blog.csdn.net/young_sam?spm=1011.2124.3001.5343">
+            <img src="https://cdn.jsdelivr.net/gh/DGdsamyoung/CDN@1.04/image/social/avatar.jpg">
+          </a>
+        </span>
+        <span>
+          <a target="_blank" rel="noopener" href="https://blog.csdn.net/young_sam?spm=1011.2124.3001.5343">sam young</a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2021-10-25<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+    </header>
   </div>
-  <header class="pattern-header ">
-    <h1 class="entry-title">谢谢饲主了喵~</h1>
-  </header>
-</div>
+
 <div id="content" class="site-content">
-  <article class="post-item post-301 page type-page status-publish has-post-thumbnail hentry">
-  如果喜欢我的博客，可以考虑资助一下哦~非常感激！
-    <div id="root">
-      <div class="root">
-        <a href="https://github.com/Kaiyuan/donate-page" target="_blank" class="pos-f tr3" title="Github"><span id="github"></span></a>
-        <ul id="donateBox" class="list pos-f tr3">
-          <!-- <li id="BTC" data-footnote="Copy addres and show QRCod"><button id="BTCBn"  data-clipboard-target="#btc-key" alt="Copy to clipboard">Bitcoin</button></li> -->
-          <!-- <li id="PayPal"><a href="" target="_blank">PayPal</a></li> -->
-          <li id="AliPay">AliPay</li>
-          <li id="WeChat">WeChat</li>
-        </ul>
-        <div id="DonateText" class="tr3">Donate</div>
-        <div id="QRBox" class="pos-f left-100">
-          <div id="MainBox"></div>
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        <!-- 
+          <header class="entry-header">
+            <h1 class="entry-title">js 剩余参数 数组解构</h1>
+            <p class="entry-census">sam young&nbsp;·&nbsp;2021-10-25&nbsp;·&nbsp;<span id="busuanzi_value_page_pv"></span>次阅读</p></p>
+
+            <hr>
+          </header>
+         -->
+        <div class="entry-content">
+          <hr>
+<h2 id="剩余参数"><a href="#剩余参数" class="headerlink" title="剩余参数"></a>剩余参数</h2><p><strong>剩余参数</strong>允许我们将不确定数量的<strong>剩余的元素</strong>放到一个<strong>数组</strong>中。</p>
+<p>比如说，当函数的实参个数大于形参个数时，我们可以将剩余的实参放到一个数组中。</p>
+<p><strong>传统写法</strong>：</p>
+<p>ES5 中，在定义方法时，参数要确定个数，如下：（程序会报错）</p>
+<pre><code class="javascript">function fn(a, b, c) &#123;
+    console.log(a);
+    console.log(b);
+    console.log(c);
+    console.log(d);
+&#125;
+
+fn(1, 2, 3);
+</code></pre>
+<p>上方代码中，因为方法的参数是三个，但使用时是用到了四个参数，所以会报错：</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/b2038c1c6ea173fccaa46ee0d3a41143.png"></p>
+<p><strong>ES6 写法</strong>：</p>
+<p>ES6 中，我们有了剩余参数，就不用担心报错的问题了。代码可以这样写：</p>
+<pre><code class="javascript">const fn = (...args) =&gt; &#123;
+    //当不确定方法的参数时，可以使用剩余参数
+    console.log(args[0]);
+    console.log(args[1]);
+    console.log(args[2]);
+    console.log(args[3]);
+&#125;;
+
+fn(1, 2);
+fn(1, 2, 3); //方法的定义中了四个参数，但调用函数时只使用了三个参数，ES6 中并不会报错。
+</code></pre>
+<p>打印结果：</p>
+<pre><code class="bash">1
+2
+undefined
+undefined
+
+
+1
+2
+3
+undefined
+</code></pre>
+<p>上方代码中注意，args 参数之后，不能再加别的参数，否则编译报错。</p>
+<p>下面这段代码，也是利用到了剩余参数：</p>
+<pre><code class="js">function fn1(first, ...args) &#123;
+    console.log(first); // 10
+    console.log(args); // 数组：[20, 30]
+&#125;
+
+fn1(10, 20, 30);
+</code></pre>
+<h3 id="剩余参数的举例：参数求和"><a href="#剩余参数的举例：参数求和" class="headerlink" title="剩余参数的举例：参数求和"></a>剩余参数的举例：参数求和</h3><p>代码举例：</p>
+<pre><code class="js">const sum = (...args) =&gt; &#123;
+    let total = 0;
+    args.forEach(item =&gt; total += item); // 注意 forEach里面的代码，写得 很精简
+    return total;
+&#125;;
+console.log(sum(10, 20, 30));
+</code></pre>
+<p>打印结果：60</p>
+<h3 id="剩余参数和解构赋值配合使用"><a href="#剩余参数和解构赋值配合使用" class="headerlink" title="剩余参数和解构赋值配合使用"></a>剩余参数和解构赋值配合使用</h3><p>代码举例：</p>
+<pre><code class="js">const students = [&#39;张三&#39;, &#39;李四&#39;, &#39;王五&#39;];
+let [s1, ...s2] = students;
+
+console.log(s1); // &#39;张三&#39;
+console.log(s2); // [&#39;李四&#39;, &#39;王五&#39;]
+</code></pre>
+<h2 id="扩展运算符（展开语法）"><a href="#扩展运算符（展开语法）" class="headerlink" title="扩展运算符（展开语法）"></a>扩展运算符（展开语法）</h2><p>扩展运算符和剩余参数是相反的。</p>
+<p>剩余参数是将剩余的元素放到一个数组中；而扩展运算符是将数组或者对象拆分成逗号分隔的参数序列。</p>
+<p>代码举例：</p>
+<pre><code class="js">const arr = [10, 20, 30];
+...arr // 10, 20, 30      注意，这一行是伪代码，这里用到了扩展运算符
+console.log(...arr); // 10 20 30
+
+console.log(10, 20, 30); // 10 20 30
+</code></pre>
+<p>上面的代码要仔细看：</p>
+<p><code>arr</code>是一个数组，而<code>...arr</code>则表示<code>10, 20, 30</code>这样的序列。</p>
+<p>我们把<code>...arr</code> 打印出来，发现打印结果竟然是 <code>10 20 30</code>，为啥逗号不见了呢？因为逗号被当作了 console.log 的参数分隔符。如果你不信，可以直接打印 <code>console.log(10, 20, 30)</code> 看看。</p>
+<p>接下来，我们看一下扩展运算符的应用。</p>
+<h3 id="举例1：数组赋值"><a href="#举例1：数组赋值" class="headerlink" title="举例1：数组赋值"></a>举例1：数组赋值</h3><p>数组赋值的代码举例：</p>
+<pre><code class="js">let arr2 = [...arr1]; // 将 arr1 赋值给 arr2
+</code></pre>
+<p>为了理解上面这行代码，我们先来分析一段代码：（将数组 arr1 赋值给 arr2）</p>
+<pre><code class="javascript">let arr1 = [&#39;www&#39;, &#39;smyhvae&#39;, &#39;com&#39;];
+let arr2 = arr1; // 将 arr1 赋值给 arr2，其实是让 arr2 指向 arr1 的内存地址
+console.log(&#39;arr1:&#39; + arr1);
+console.log(&#39;arr2:&#39; + arr2);
+console.log(&#39;---------------------&#39;);
+
+arr2.push(&#39;你懂得&#39;); //往 arr2 里添加一部分内容
+console.log(&#39;arr1:&#39; + arr1);
+console.log(&#39;arr2:&#39; + arr2);
+</code></pre>
+<p>运行结果：</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/6d8aac5acee2c951f2b094e683ceb943.png"></p>
+<p>上方代码中，我们往往 arr2 里添加了<code>你懂的</code>，却发现，arr1 里也有这个内容。原因是：<code>let arr2 = arr1;</code>其实是让 arr2 指向 arr1 的地址。也就是说，二者指向的是同一个内存地址。</p>
+<p>如果不想让 arr1 和 arr2 指向同一个内存地址，我们可以借助<strong>扩展运算符</strong>来做：</p>
+<pre><code class="javascript">let arr1 = [&#39;www&#39;, &#39;smyhvae&#39;, &#39;com&#39;];
+let arr2 = [...arr1]; //【重要代码】arr2 会重新开辟内存地址
+console.log(&#39;arr1:&#39; + arr1);
+console.log(&#39;arr2:&#39; + arr2);
+console.log(&#39;---------------------&#39;);
+
+arr2.push(&#39;你懂得&#39;); //往arr2 里添加一部分内容
+console.log(&#39;arr1:&#39; + arr1);
+console.log(&#39;arr2:&#39; + arr2);
+</code></pre>
+<p>运行结果：</p>
+<pre><code class="bash">arr1:www,smyhvae,com
+arr2:www,smyhvae,com
+---------------------
+arr1:www,smyhvae,com
+arr2:www,smyhvae,com,你懂得
+</code></pre>
+<p>我们明白了这个例子，就可以避免开发中的很多业务逻辑上的 bug。</p>
+<h3 id="举例2：合并数组"><a href="#举例2：合并数组" class="headerlink" title="举例2：合并数组"></a>举例2：合并数组</h3><p>代码举例：</p>
+<pre><code class="js">let arr1 = [&#39;王一&#39;, &#39;王二&#39;, &#39;王三&#39;];
+let arr2 = [&#39;王四&#39;, &#39;王五&#39;, &#39;王六&#39;];
+// ...arr1  // &#39;王一&#39;,&#39;王二&#39;,&#39;王三&#39;
+// ...arr2  // &#39;王四&#39;,&#39;王五&#39;,&#39;王六&#39;
+
+// 方法1
+let arr3 = [...arr1, ...arr2];
+console.log(arr3); // [&quot;王一&quot;, &quot;王二&quot;, &quot;王三&quot;, &quot;王四&quot;, &quot;王五&quot;, &quot;王六&quot;]
+
+// 方法2
+arr1.push(...arr2);
+console.log(arr1); // [&quot;王一&quot;, &quot;王二&quot;, &quot;王三&quot;, &quot;王四&quot;, &quot;王五&quot;, &quot;王六&quot;]
+</code></pre>
+<h3 id="举例3：将伪数组或者可遍历对象转换为真正的数组"><a href="#举例3：将伪数组或者可遍历对象转换为真正的数组" class="headerlink" title="举例3：将伪数组或者可遍历对象转换为真正的数组"></a>举例3：将伪数组或者可遍历对象转换为真正的数组</h3><p>代码举例：</p>
+<pre><code class="js">const myDivs = document.getElementsByClassName(&#39;div&#39;);
+const divArr = [...myDivs]; // 利用扩展运算符，将伪数组转为真正的数组
+</code></pre>
+
         </div>
-        <!-- Bitcoin 账号 -->
-        <!-- <input id="btc-key" type="text" value="14JkMR68n4PBASB3TgvpjtaPTbfffSwFbW" readonly="readonly"> -->
-      </div>
-    </div>
-    <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
-    <footer class="post-footer">
-      <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
-      <div class="post-tags">
-      </div>
-      <div class="post-share">
-        <div class="social-share sharehidden share-component"></div>
-        <i class="iconfont show-share icon-forward"></i>
-      </div>
-    </footer><!-- .entry-footer -->
-  </article>
-  <section class="author-profile">
-    <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
-      <a href="/about/" class="profile gravatar"><img src="https://cdn.jsdelivr.net/gh/DGdsamyoung/CDN@1.04/image/social/avatar.jpg" itemprop="image" alt="hojun" height="70" width="70"></a>
-      <div class="meta">
-        <span class="title">Author</span>
-        <h3 itemprop="name">
-        <a target="_blank" href="https://blog.csdn.net/young_sam?spm=1011.2124.3001.5343" itemprop="url" rel="author noopener">sam young</a>
-        </h3>
-      </div>
-    </div>
-    <hr>
-    <p><i class="iconfont icon-write"></i>挖坑日记 sam.young.zq@gmail.com</p>
-  </section>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/DGdsamyoung/CDN@1.04/image/donate/AliPayQR.png"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/DGdsamyoung/CDN@1.04/image/donate/WeChatQR.png"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+          
+            <div class="post-nepre half previous">
+          
+            <a href="/2022/02/10/2022-goal/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="/image/loading/orange.progress-bar-stripe-loader.svg" data-src="http://www.dmoe.cc/random.php?time=1644455761000" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="http://www.dmoe.cc/random.php?time=1644455761000">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                2022年度目标</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+        
+          
+            <div class="post-nepre half next">
+          
+            <a href="/2021/10/11/code-es6/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/DGdsamyoung/CDN@1.04/image/loading/orange.progress-bar-stripe-loader.svg" data-src="http://www.dmoe.cc/random.php?time=1633925761000" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="http://www.dmoe.cc/random.php?time=1633925761000">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                前端代码优化es6常用方法</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
+      
+<div id="vcomments"></div>
+<script>
+  window.onload = function(){
+      var valine = new Valine();
+      valine.init({
+        el: '#vcomments',
+        appId: "GyC3NzMvd0hT9Yyd2hYIC0MN-gzGzoHsz",
+        appKey: "mgOpfzbkHYqU92CV4IDlAUHQ",
+        path: window.location.pathname,
+        placeholder: "你是我一生只会遇见一次的惊喜 ..."
+      })
+  }
+</script>
+
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+          <a target="_blank" rel="noopener" href="https://blog.csdn.net/young_sam?spm=1011.2124.3001.5343" class="profile gravatar"><img src="https://cdn.jsdelivr.net/gh/DGdsamyoung/CDN@1.04/image/social/avatar.jpg" itemprop="image" alt="sam young" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a target="_blank" href="https://blog.csdn.net/young_sam?spm=1011.2124.3001.5343" itemprop="url" rel="author noopener">sam young</a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i>一个好奇的人</p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
 </div>
-  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
-  <!-- <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script> -->
-  <script>
-    jQuery(document).ready(function() {
-    var QRBox = $('#QRBox');
-    var MainBox = $('#MainBox');
-    var BTCQR = '/images/donate/BTCQR.png'; // 二维码路径
-    var AliPayQR  = 'https://cdn.jsdelivr.net/gh/DGdsamyoung/CDN@1.04/image/donate/AliPayQR.png';
-    var WeChanQR  = 'https://cdn.jsdelivr.net/gh/DGdsamyoung/CDN@1.04/image/donate/WeChatQR.png';
 
-    function showQR(QR) {
-      if (QR) {
-        MainBox.css('background-image','url('+QR+')');
-      }
-      $('#DonateText,#donateBox,#github').addClass('blur');
-      QRBox.fadeIn(300,function(argument) {
-        MainBox.addClass('showQR');
-      });
-    }
 
-    $('#donateBox>li').click(function(event) {
-      var thisID  = $(this).attr('id');
-      if (thisID === 'BTC') {
-        new ClipboardJS('#BTCBn');
-        new ClipboardJS('.btnsss');
-        showQR(BTCQR);
-      } else if (thisID === 'AliPay') {
-        showQR(AliPayQR);
-      } else if (thisID === 'WeChat') {
-        showQR(WeChanQR);
-      }
-    });
-
-    MainBox.click(function(event) {
-      MainBox.removeClass('showQR').addClass('hideQR');
-      setTimeout (function(a) {
-        QRBox.fadeOut(300,function(argument) {
-          MainBox.removeClass('hideQR');
-        });
-        $('#DonateText,#donateBox,#github').removeClass('blur');
-      },600);
-
-    });
-  });
-  </script>
 
     </div>    
     <div class="ins-search">
