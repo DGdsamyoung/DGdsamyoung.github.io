@@ -186,6 +186,18 @@ function imgError (ele, type) {
       ele.src = 'https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/image-404.png'
   }
 }
+
+/** 随机图片 */
+function imgRandom (ele, type) {
+  switch (type) {
+    case 1:
+    return '123456'
+
+    default:
+     return '9999'
+  }
+}
+
 mashiro_global.post_list_show_animation = new function () {
   this.ini = function (ajax) {
     $('article.post-list-thumb').each(function (i) {
@@ -546,20 +558,20 @@ function nextBG (random) {
   bgindex = bgindex + 1
   console.log(bg[Math.abs(bgindex % bg.length)])
     // $('.centerbg').css('background-image', 'url("' + bg[Math.abs(bgindex % bg.length)] + '")')
-  $('.centerbg').css('background-image', `url(http://api.btstu.cn/sjbz/?lx=dongman&time=${random})`)
+  $('.centerbg').css('background-image', `url(http://www.dmoe.cc/random.php?time=${random})`)
 }
 
 function preBG (random) {
   // bgindex = bgindex - 1
   // console.log(bg[Math.abs(bgindex % bg.length)])
   // $('.centerbg').css('background-image', 'url("' + bg[Math.abs(bgindex % bg.length)] + '")')
-  $('.centerbg').css('background-image', `url(http://api.btstu.cn/sjbz/?lx=dongman&time=${random})`)
+  $('.centerbg').css('background-image', `url(http://www.dmoe.cc/random.php?time=${random})`)
 }
 
 $(document).ready(function () {
 
   // $('.centerbg').css('background-image', 'url("' + bg[bgindex] + '")')
-  $('.centerbg').css('background-image', 'url(http://api.btstu.cn/sjbz/?lx=dongman)')
+  $('.centerbg').css('background-image', 'url(http://www.dmoe.cc/random.php)')
 
   $('#bg-next').click(function () {
     var bgindex = Math.floor(Math.random() * new Date())

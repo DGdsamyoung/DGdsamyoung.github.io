@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  
+  <title itemprop="name">html picture 使用 和 img.md | sam young</title>
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  <link rel="stylesheet" id="saukra_css-css" href="/css/style.css" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/lib.min.css" media="all">
+  <link rel="stylesheet" href="/css/font.css" media="all">
+  <link rel="stylesheet" href="/css/insight.css" media="all">
+  <link rel="stylesheet" href="/css/jquery.fancybox.min.css" media="all">
+  <link rel="stylesheet" href="/css/zoom.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<!--   <link rel="stylesheet" id="saukra_css-css" href="https://2heng.xin/wp-content/cache/autoptimize/css/autoptimize_ad42a61f4c7d4bdd9f91afcff6b5dda5.css
+" type="text/css" media="all"> -->
+  <script>
+  /*Initial Variables*/
+  var mashiro_option = new Object();
+  var mashiro_global = new Object();
+  mashiro_option.NProgressON = true;
+  /* 
+   * 邮箱信息之类的东西可以填在这里，这些js变量基本都作用于sakura-app.js
+   * 这样的设置仅是为了方便在基于PHP开发的主题中设置js变量，既然移植到了Node上，我想或许可以精简这一逻辑吧
+   */
+  mashiro_option.email_domain = "";
+  mashiro_option.email_name = "";
+  mashiro_option.cookie_version_control = "";
+  mashiro_option.qzone_autocomplete = false;
+  mashiro_option.site_name = "強记_sam young";
+  mashiro_option.author_name = "sam young";
+  mashiro_option.site_url = "https://blog.csdn.net/young_sam?spm=1011.2124.3001.5343";
+  mashiro_option.v_appId = "GyC3NzMvd0hT9Yyd2hYIC0MN-gzGzoHsz";
+  mashiro_option.v_appKey = "mgOpfzbkHYqU92CV4IDlAUHQ";
+  mashiro_option.mathjax = "0";
+  mashiro_option.qq_api_url = "https://api.mashiro.top/qqinfo/"; 
+  mashiro_option.qq_avatar_api_url = "https://api.mashiro.top/qqinfo/";
+
+  // mashiro_option.jsdelivr_css_src = "https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/css/lib.min.css";
+  // mashiro_option.float_player_on = true;
+
+  /*End of Initial Variables*/
+  </script>
+  <script type="text/javascript">
+  var bg = "".split(",");
+  var bgindex = Math.floor(Math.random()*bg.length);
+  if (!!window.ActiveXObject || "ActiveXObject" in window) { //is IE?
+    alert('朋友，IE浏览器未适配哦~');
+  }
+  </script>
+  <style type="text/css">
+  .hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}
+  </style>
+  <style type="text/css">.site-top .lower nav{display:block !important;}.author-profile i,.post-like a,.post-share .show-share,.sub-text,.we-info a,span.sitename,.post-more i:hover,#pagination a:hover,.post-content a:hover,.float-content i:hover{color:#FE9600}.feature i,.download,.navigator i:hover,.links ul li:before,.ar-time i,span.ar-circle,.object,.comment .comment-reply-link,.siren-checkbox-radio:checked + .siren-checkbox-radioInput:after{background:#FE9600}::-webkit-scrollbar-thumb{background:#FE9600}.download,.navigator i:hover,.link-title,.links ul li:hover,#pagination a:hover,.comment-respond input[type='submit']:hover{border-color:#FE9600}.entry-content a:hover,.site-info a:hover,.comment h4 a,#comments-navi a.prev,#comments-navi a.next,.comment h4 a:hover,.site-top ul li a:hover,.entry-title a:hover,#archives-temp h3,span.page-numbers.current,.sorry li a:hover,.site-title a:hover,i.iconfont.js-toggle-search.iconsearch:hover,.comment-respond input[type='submit']:hover{color:#FE9600}.comments .comments-main{display:block !important;}.comments .comments-hidden{display:none !important;}background-position:center center;background-attachment:inherit;}
+  </style>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
+  <div class="scrollbar" id="bar">
+  </div>
+  <a href="#" class="cd-top faa-float animated"></a>
+  <section id="main-container">
+    <!--
+ * @Description:
+ * @Autor: 杨自强
+ * @Date: 2021-08-25 14:28:34
+ * @LastEditors: 杨自强
+ * @LastEditTime: 2021-09-22 10:10:18
+-->
+<div class="headertop filter-dot">
+  <div id="banner_wave_1"></div>
+  <div id="banner_wave_2"></div>
+  <figure id="centerbg" class="centerbg">
+    <div class="focusinfo no-select">
+      <div class="header-tou">
+        <a target="_blank" rel="noopener" href="https://blog.csdn.net/young_sam?spm=1011.2124.3001.5343">
+          <img src="/images/avatar/my.jpg">
+        </a>
+      </div>
+      <div class="header-info">
+        <p>挖坑日记 sam.young.zq@gmail.com</p>
+        <div class="top-social_v2">
+          <li id="bg-pre">
+            <img class="flipx" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+          
+            
+              
+                <li>
+                  <a href="http://github.com/DGdsamyoung" target="_blank" class="social-github" title="github">
+                    <img src="https://cdn.jsdelivr.net/gh/DGdsamyoung/CDN@1.04/image/social/icon/github.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://weibo.com/3177553564/" target="_blank" class="social-github" title="sina">
+                    <img src="https://cdn.jsdelivr.net/gh/DGdsamyoung/CDN@1.04/image/social/icon/sina.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://blog.csdn.net/young_sam?spm=1011.2124.3001.5343" target="_blank" class="social-github" title="csdn">
+                    <img src="https://cdn.jsdelivr.net/gh/DGdsamyoung/CDN@1.04/image/social/icon/csdn.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="http://weibo.com/mashirozx?is_all=1" target="_blank" class="social-github" title="email">
+                    <img src="https://cdn.jsdelivr.net/gh/DGdsamyoung/CDN@1.04/image/social/icon/email.svg">
+                  </a>
+                </li>
+              
+            
+              
+                <li class="wechat">
+                  <a href="/#">
+                    <img src="https://cdn.jsdelivr.net/gh/DGdsamyoung/CDN@1.04/image/social/icon/wechat.png">
+                  </a>
+                  <div class="wechatInner">
+                    <img src="https://cdn.jsdelivr.net/gh/DGdsamyoung/CDN@1.1/image/social/wechat.png">
+                  </div>
+                </li>
+              
+            
+          
+          <li id="bg-next">
+            <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+        </div>
+      </div>
+    </div>
+  </figure>
+  <div id="video-container" style="">
+    <video style="object-fit: fill" id="bgvideo" class="video" video-name="" src="" width="auto" preload="auto">
+    </video>
+    <div id="video-btn" class="loadvideo videolive">
+    </div>
+    <div id="video-add">
+    </div>
+    <div class="video-stu">
+    </div>
+  </div>
+  <div class="headertop-down faa-float animated" onclick="headertop_down()">
+    <span>
+      <i class="fa fa-chevron-down" aria-hidden="true">
+      </i>
+    </span>
+  </div>
+</div>
+
+    <div id="page" class="site wrapper">
+      <header class="site-header no-select gizle sabit" role="banner">
+  <div class="site-top">
+    <div class="site-branding">
+      <span class="site-title">
+        <span class="logolink moe-mashiro">
+          <a href="/">
+            <span class="sakurasono">強记_</span>
+            <span class="shironeko">sam young</span>
+          </a>
+        </span>
+      </span>
+    </div>
+    <div class="searchbox search-form-submit">
+      <i class="iconfont js-toggle-search iconsearch icon-search">
+      </i>
+    </div>
+    <div id="show-nav" class="showNav mobile-fit">
+      <div class="line line1">
+      </div>
+      <div class="line line2">
+      </div>
+      <div class="line line3">
+      </div>
+    </div>
+    <div class="lower-cantiner">
+      <div class="lower">
+        <nav class="mobile-fit-control hide">
+          <ul id="menu-new" class="menu">
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+                    首页
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+                    归档
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/categories/%E6%8A%80%E6%9C%AF/">
+                          <i class="fa fa-code" aria-hidden="true"></i>
+                          技术
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/%E7%94%9F%E6%B4%BB/">
+                          <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                          生活
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/%E8%B5%84%E6%BA%90/">
+                          <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                          资源
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/%E9%9A%8F%E6%83%B3/">
+                          <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                          随想
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/%E8%BD%AC%E8%BD%BD/">
+                          <i class="fa fa-book" aria-hidden="true"></i>
+                          转载
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="javascript:;">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+                    清单
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/tags/%E6%82%A6%E8%AF%BB/">
+                          <i class="fa fa-th-list faa-bounce" aria-hidden="true"></i>
+                          书单
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/bangumi/">
+                          <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                          番组
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/music/">
+                          <i class="fa fa-headphones" aria-hidden="true"></i>
+                          歌单
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/tags/%E5%9B%BE%E9%9B%86/">
+                          <i class="fa fa-photo" aria-hidden="true"></i>
+                          图集
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="/comment/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+                    留言板
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/donate/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-heart faa-pulse" aria-hidden="true"></i>
+                    赞赏
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/about/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+                    关于
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/about/">
+                          <i class="fa fa-meetup" aria-hidden="true"></i>
+                          我？
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/plan/">
+                          <i class="fa fa-meetup" aria-hidden="true"></i>
+                          计划
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/animation/">
+                          <i class="fa fa-meetup" aria-hidden="true"></i>
+                          动画
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/background/">
+                          <i class="fa fa-meetup" aria-hidden="true"></i>
+                          背景图片
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+<script>
+  function test() {
+      return '123'
+  }
+  console.log(test())
+</script>
+
+
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" src="https://cdn.jsdelivr.net/gh/DGdsamyoung/CDN@1.04/image/loading/orange.progress-bar-stripe-loader.svg" data-src="http://www.dmoe.cc/random.php?time=1659795319000">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      html picture 使用 和 img.md</h1>
+      <p class="entry-census">
+        <span>
+          <a target="_blank" rel="noopener" href="https://blog.csdn.net/young_sam?spm=1011.2124.3001.5343">
+            <img src="https://cdn.jsdelivr.net/gh/DGdsamyoung/CDN@1.04/image/social/avatar.jpg">
+          </a>
+        </span>
+        <span>
+          <a target="_blank" rel="noopener" href="https://blog.csdn.net/young_sam?spm=1011.2124.3001.5343">sam young</a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2022-8-6<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+    </header>
+  </div>
+
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        <!-- 
+          <header class="entry-header">
+            <h1 class="entry-title">html picture 使用 和 img.md</h1>
+            <p class="entry-census">sam young&nbsp;·&nbsp;2022-8-6&nbsp;·&nbsp;<span id="busuanzi_value_page_pv"></span>次阅读</p></p>
+
+            <hr>
+          </header>
+         -->
+        <div class="entry-content">
+          <p>在用户界面中使用图像和动画已成为现代 Web 应用程序中的常见情况。尽管这些现代设计都致力于改善应用程序的用户体验，但如果这些图像在所有设备上都没有良好的响应，事情就会适得其反。</p>
+<p>作为开发人员，我们必须满足所有这些要求。但大多数时候，由于我们正在寻求更高级别的解决方案，因此会忽略一些可能会带来巨大影响的小事。</p>
+<p>在 picture 标签和 img 标签之间做选择可能是一个很小的决策，但如果你做出了正确的选择，就能改善用户体验和性能。</p>
+<p>本文将讨论 picture 和 img 标签之间的区别，以及 picture 标签比 img 标签更好用的原因所在。</p>
+<p>下次当你创建一个 React 图像组件时，请一定要在其中实现你即将在本文中学习的最佳实践。根据接收到的 props 返回正确的标签，并处理好所有必要的回退。你甚至可以在 Bit.dev 的组件中心上共享它，这样你的团队和你自己将来都能重用它。这样，你就会拥有一个优化极佳的图像组件，可以毫不犹豫地用在所有 Web 项目中。</p>
+<p>img 标签现在已经不够优秀</p>
+<p>众所周知，很长一段时间以来，img 标签一直是 HTML 的核心元素之一，它的简单性和可用性是毋庸置疑的。</p>
+<blockquote>
+<p>然而，随着各种屏幕尺寸、分辨率的设备和复杂用户需求的发展，img 标签的响应性和在多设备应用中使用的能力开始受到质疑。</p>
+</blockquote>
+<p>所有这些问题可以归结为两大方面：</p>
+<ol>
+<li><p> 分辨率切换——为小屏幕设备提供较小尺寸图像的问题。</p>
+</li>
+<li><p> 图像切换——在不同屏幕上显示不同图像的问题。</p>
+</li>
+</ol>
+<p>现在，我们来看看如何解决这些问题，以及 picture 标签的其他特性。</p>
+<section style="letter-spacing: 0.544px;white-space: normal;text-size-adjust: auto;background-color: rgb(255, 255, 255);color: rgb(63, 63, 63);font-family: Avenir, -apple-system-font, 微软雅黑, sans-serif;text-align: center;font-size: 20px;">使用 srcset 和 size 属性切换分辨率</section>
+
+<p>如前所述，当今的网页设计师经常使用高分辨率图像来增加用户吸引力。但是作为开发人员，我们必须非常小心地选择正确的 HTML 元素。</p>
+<blockquote>
+<p>假设你对高分辨率图像使用简单的 Img 标签。在这种情况下，运行你应用程序的每台设备都会使用相同的图像，并且肯定会导致屏幕分辨率较低的设备（如移动设备）出现性能问题。</p>
+</blockquote>
+<p>这可能会导致更长的图像加载时间以及从上到下一块一块地图像加载。</p>
+<section style="margin-bottom: 15px;padding-top: 23px;padding-right: 8px;padding-left: 8px;letter-spacing: 0.544px;text-size-adjust: auto;background-color: rgb(255, 255, 255);font-family: Avenir, -apple-system-font, 微软雅黑, sans-serif;font-size: 16px;white-space: pre-line;color: rgb(74, 74, 74);line-height: 1.75em;">通过使用 srcset 和 size 属性，可以使用 picture 图片标签轻松解决这一问题。  </section>
+
+
+<pre><code class="html">&lt;picture&gt;
+&lt;source
+srcset=&quot;small-car-image.jpg 400w,
+medium-car-image.jpg 800w,
+large-car-image.jpg 1200w&quot;
+sizes=&quot;(min-width: 1280px) 1200px,
+(min-width: 768px) 400px,
+100vw&quot;&gt;
+&lt;img src=&quot;medium-car-image.jpg&quot; alt=&quot;Car&quot;&gt;
+&lt;/picture&gt;
+</code></pre>
+<p>srcset 属性接收多个图像，其宽度都以像素为单位，浏览器使用这些值在提供的图像之间进行选择。在上面的示例中，同一图像有 3 个版本，具有 3 种不同的尺寸。  </p>
+<p>Sizes 属性定义图像将在屏幕上占据的空间。在上面的示例中，如果屏幕的最小宽度为 1280px，则图像将占据 1200px。</p>
+<blockquote>
+<p>话虽如此，建议不要仅将 picture 标签用于分辨率切换，因为可以使用更新版本的 Img 标签（具有更多的浏览器支持）来实现此目的。</p>
+</blockquote>
+<pre><code class="html">    &lt;img srcset=&quot;small-car-image.jpg 400w,  
+    medium-car-image.jpg 800w,  
+    large-car-image.jpg 1200w&quot;  
+    sizes=&quot;(min-width: 1280px) 1200px,  
+    (min-width: 768px) 400px,  
+    100vw&quot;  
+    src=&quot;medium-car-image.jpg&quot; alt=&quot;Car&quot;&gt;
+</code></pre>
+<p>但在大多数情况下，我们需要同时处理“分辨率切换”和“图像切换”，并且 picture 标签是最好的解决方案。  </p>
+<p>因此，让我们看看如何使用 picture 标签解决图像切换问题。</p>
+<section style="letter-spacing: 0.544px;white-space: normal;text-size-adjust: auto;background-color: rgb(255, 255, 255);color: rgb(63, 63, 63);font-family: Avenir, -apple-system-font, 微软雅黑, sans-serif;text-align: center;font-size: 20px;">使用媒体属性切换图像</section>
+
+<p>图像切换背后的主要思想是根据设备的屏幕尺寸显示不同的图像。在大多数情况下，切换到移动设备时，在大屏幕上看起来很棒的图像可能会被裁剪或显得很小。</p>
+<blockquote>
+<p>我们可以为不同的屏幕尺寸提供不同版本的图像来解决这一问题。这些不同的版本可以是同一图像的横向，纵向或任何自定义版本。</p>
+</blockquote>
+<section style="margin-bottom: 15px;padding-top: 23px;padding-right: 8px;padding-left: 8px;letter-spacing: 0.544px;text-size-adjust: auto;background-color: rgb(255, 255, 255);font-family: Avenir, -apple-system-font, 微软雅黑, sans-serif;font-size: 16px;white-space: pre-line;color: rgb(74, 74, 74);line-height: 1.75em;">我们可以使用 picture 标签中的多个 source 标签轻松实现分辨率切换。  </section>
+
+
+<pre><code class="html">    &lt;picture&gt;&lt;source ....&gt;&lt;source ....&gt;&lt;source ....&gt;&lt;/picture&gt;
+</code></pre>
+<section style="margin-bottom: 15px;padding-top: 23px;padding-right: 8px;padding-left: 8px;letter-spacing: 0.544px;text-size-adjust: auto;background-color: rgb(255, 255, 255);font-family: Avenir, -apple-system-font, 微软雅黑, sans-serif;font-size: 16px;white-space: pre-line;color: rgb(74, 74, 74);line-height: 1.75em;">然后，我们可以使用 media 属性定义使用这些源的不同媒体条件。我们还可以按照上一节中讨论的类似方式使用 srcset 和 size 属性。以下示例显示了使用 picture 标签解决“图像切换”和“分辨率切换”的完整示例。  </section>
+
+
+<pre><code class="html">&lt;picture&gt;
+
+&lt;source media=&quot;(orientation: landscape)&quot;
+
+srcset=&quot;land-small-car-image.jpg 200w,
+land-medium-car-image.jpg 600w,
+land-large-car-image.jpg 1000w&quot;
+
+sizes=&quot;(min-width: 700px) 500px,
+(min-width: 600px) 400px,
+100vw&quot;&gt;
+
+&lt;source media=&quot;(orientation: portrait)&quot;
+
+srcset=&quot;port-small-car-image.jpg 700w,
+port-medium-car-image.jpg 1200w,
+port-large-car-image.jpg 1600w&quot;
+
+sizes=&quot;(min-width: 768px) 700px,
+(min-width: 1024px) 600px,
+500px&quot;&gt;
+
+&lt;img src=&quot;land-medium-car-image.jpg&quot; alt=&quot;Car&quot;&gt;
+&lt;/picture&gt;
+</code></pre>
+<section style="margin-bottom: 15px;padding-top: 23px;padding-right: 8px;padding-left: 8px;letter-spacing: 0.544px;text-size-adjust: auto;background-color: rgb(255, 255, 255);font-family: Avenir, -apple-system-font, 微软雅黑, sans-serif;font-size: 16px;white-space: pre-line;color: rgb(74, 74, 74);line-height: 1.75em;">如果屏幕方向是横向，则浏览器将显示第一组图像；如果屏幕方向是纵向，则浏览器将使用第二组图像。除此之外，你还可以将 media 属性与 max-width 和 min-width 参数一起使用：  </section>
+
+<pre><code class="html">&lt;picture&gt;
+&lt;source media=&quot;(max-width: 767px)&quot; ....&gt;
+&lt;source media=&quot;(min-width: 768px)&quot; ....&gt;
+&lt;/picture&gt;
+</code></pre>
+<p>最后一个 img 标签用于向后兼容不支持 picture 标签的浏览器。  </p>
+<section style="letter-spacing: 0.544px;white-space: normal;text-size-adjust: auto;background-color: rgb(255, 255, 255);color: rgb(63, 63, 63);font-family: Avenir, -apple-system-font, 微软雅黑, sans-serif;text-align: center;font-size: 20px;">用于受部分支持的图像类型</section>
+
+<p>随着技术的飞速发展，新的图像格式也在不断涌现。其中一些格式（例如 webp、svg 和 avif）提供了更高的用户体验水平。</p>
+<p>另一方面，某些浏览器对这些现代图像类型存在限制，如果我们不使用兼容的图像类型，事情将会适得其反。</p>
+<blockquote>
+<p>但是，我们可以使用 Picture 标签轻松解决这个问题，因为它允许我们在其中包含多个来源。</p>
+</blockquote>
+<pre><code class="html">    &lt;picture&gt;  
+    &lt;source srcset=&quot;test.avif&quot; type=&quot;image/avif&quot;&gt;  
+    &lt;source srcset=&quot;test.webp&quot; type=&quot;image/webp&quot;&gt;  
+    &lt;img src=&quot;test.png&quot; alt=&quot;test image&quot;&gt;  
+    &lt;/picture&gt;
+</code></pre>
+<p>上面的示例包括 avif、webp 和 png 格式的三种图像类型。首先，浏览器将尝试 avif 格式；如果失败，则将尝试 webp 格式。如果浏览器不支持这两种方式，它将使用 png 图像。  </p>
+<blockquote>
+<p>Chrome 宣布“DevTools 将在 Rendering 选项卡中提供两个新的仿真，以模拟部分受支持的图像类型”后，picture 标签用起来就更有意思了。</p>
+</blockquote>
+<p>从 Chrome 88 开始，你可以使用 Chrome DevTools 检查浏览器与图像类型的兼容性。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/3955433c9afb5b2503dc92fc2daeb91c.png" alt="图片">使用 ChromeDevTools 进行图像兼容性仿真</p>
+<section style="letter-spacing: 0.544px;white-space: normal;text-size-adjust: auto;background-color: rgb(255, 255, 255);color: rgb(63, 63, 63);font-family: Avenir, -apple-system-font, 微软雅黑, sans-serif;text-align: center;font-size: 20px;">    结语    </section>
+
+<p>尽管我们讨论了为什么 picture 标签比 img 标签更好用的原因，但我必须坚持一点，那就是 img 标签并没有消亡，或者说不会很快消亡。</p>
+<p>如果我们能明智地使用 img 提供的属性，如 srcset 和 size，则可以从中获得最大收益。例如，我们可以只使用 img 标签来解决“分辨率切换”问题。</p>
+<p>另一方面，我们可以使用 picture 标签的媒体查询和其他属性轻松实现分辨率切换和图像切换。</p>
+<p>用于部分受支持的图像类型和 Chrome DevTools 的支持可以被认为是 picture 标签的额外优势。</p>
+<p>但是，这两种元素各有利弊。因此，我们必须根据我们的需求仔细考虑和使用最合适的元素。</p>
+<p>谢谢你的阅读！</p>
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/DGdsamyoung/CDN@1.04/image/donate/AliPayQR.png"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/DGdsamyoung/CDN@1.04/image/donate/WeChatQR.png"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+          
+            <div class="post-nepre half previous">
+          
+            <a href="/2022/08/09/css%20table-layout%E7%94%A8%E6%B3%95/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="/image/loading/orange.progress-bar-stripe-loader.svg" data-src="http://www.dmoe.cc/random.php?time=1660024671000" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="http://www.dmoe.cc/random.php?time=1660024671000">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                css table-layout用法.md</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+        
+          
+            <div class="post-nepre half next">
+          
+            <a href="/2022/08/05/vue%20%E6%8B%96%E6%8B%BD%E6%8C%87%E4%BB%A4/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/DGdsamyoung/CDN@1.04/image/loading/orange.progress-bar-stripe-loader.svg" data-src="http://www.dmoe.cc/random.php?time=1659655943000" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="http://www.dmoe.cc/random.php?time=1659655943000">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                vue 拖拽指令.md</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
+      
+<div id="vcomments"></div>
+<script>
+  window.onload = function(){
+      var valine = new Valine();
+      valine.init({
+        el: '#vcomments',
+        appId: "GyC3NzMvd0hT9Yyd2hYIC0MN-gzGzoHsz",
+        appKey: "mgOpfzbkHYqU92CV4IDlAUHQ",
+        path: window.location.pathname,
+        placeholder: "你是我一生只会遇见一次的惊喜 ..."
+      })
+  }
+</script>
+
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+          <a target="_blank" rel="noopener" href="https://blog.csdn.net/young_sam?spm=1011.2124.3001.5343" class="profile gravatar"><img src="https://cdn.jsdelivr.net/gh/DGdsamyoung/CDN@1.04/image/social/avatar.jpg" itemprop="image" alt="sam young" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a target="_blank" href="https://blog.csdn.net/young_sam?spm=1011.2124.3001.5343" itemprop="url" rel="author noopener">sam young</a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i>一个好奇的人</p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
+</div>
+
+
+
+    </div>    
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            // PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+    <!--
+ * @Description:
+ * @Autor: 杨自强
+ * @Date: 2021-08-25 14:28:34
+ * @LastEditors: 杨自强
+ * @LastEditTime: 2021-09-22 09:34:59
+-->
+<!-- <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 young<br>
+      powered_by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer> -->
+<footer id="colophon" class="site-footer" role="contentinfo">
+  <div class="site-info">
+    <div class="footertext">
+      <div class="img-preload">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/wordpress-rotating-ball-o.svg">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/disqus-preloader.svg">
+      </div>
+      <p style="color: #666666;">&copy 2022 young</p>
+    </div>
+    <div class="footer-device">
+    <!-- <p style="font-family: 'Ubuntu', sans-serif;">
+        <span style="color: #b9b9b9;">Theme <a href="https://github.com/honjun/hexo-theme-sakura" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Sakura</a> <i class="iconfont icon-sakura rotating" style="color: #ffc0cb;display:inline-block"></i> by <a href="https://2heng.xin/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Mashiro</a>&<a href="https://www.hojun.cn/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Hojun</a>, Powered by Hexo, Hosted by Coding Pages</a>
+        </span>
+      </p> -->
+    </div>
+  </div><!-- .site-info -->
+</footer>
+
+
+
+<!-- <script src="/js/tocbot.js"></script> -->
+<script type="text/javascript" src="/js/lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/InsightSearch.js"></script>
+<script type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
+<script type="text/javascript" src="/js/zoom.min.js"></script>
+<script type="text/javascript" src="/js/sakura-app.js"></script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine@1.3.4/dist/Valine.min.js'></script>
+<script src="/js/botui.js"></script>
+<!-- 不蒜子 网页计数器 -->
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script> -->
+<script type="text/javascript">
+/* <![CDATA[ */
+if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2","name":"Unbroken.mp4","live":"close"},"windowheight":"fixed","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+} else {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2","name":"Unbroken.mp4","live":"open"},"windowheight":"auto","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+}
+/* ]]> */
+
+</script>
+<script>
+$(document).ready(function() {
+  if ($(".toc").length > 0 && document.body.clientWidth > 1200) {
+    if ($(".pattern-center").length > 0) { //有图的情况
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -400,
+          scrollSmoothOffset: -85
+      });
+    } else {
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -85,
+          scrollSmoothOffset: -85
+      });
+    }
+    var offsetTop = $('.toc').offset().top - 95;
+    window.onscroll = function() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      if (scrollTop >= offsetTop) {
+        $('.toc').addClass('toc-fixed');
+      } else {
+        $('.toc').removeClass('toc-fixed');
+      }
+    }
+  }
+});
+</script>
+
+    <div class="openNav no-select" style="height: 50px;">
+      <div class="iconflat no-select" style="width: 50px; height: 50px;">
+        <div class="icon"></div>
+      </div>
+      <div class="site-branding search-form-submit">
+        <i class="iconfont js-toggle-search iconsearch icon-search"></i>
+      </div>
+    </div>
+  </section>
+  <div id="mo-nav" class="">
+  <div class="m-avatar">
+    <img src="https://cdn.jsdelivr.net/gh/DGdsamyoung/CDN@1.04/image/social/avatar.jpg">
+  </div>
+  <p style="text-align: center; color: #333; font-weight: 900; font-family: 'Ubuntu', sans-serif; letter-spacing: 1.5px">強记_sam young</p>
+  <p style="text-align: center; word-spacing: 20px;">
+    
+      
+        <a href="http://github.com/honjun" class="fa fa-github" target="_blank" style="color: #333; margin-left:20px"></a>
+      
+        <a href="http://weibo.com/mashirozx?is_all=1" class="fa fa-weibo" target="_blank" style="color: #dd4b39; margin-left:20px"></a>
+      
+        <a href="https://wpa.qq.com/msgrd?v=3&uin=954655431&site=qq&menu=yes" class="fa fa-qq" target="_blank" style="color: #25c6fe; margin-left:20px"></a>
+      
+    
+  </p>
+  <ul id="menu-new-1" class="menu">
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+            首页
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/archives">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+            归档
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/categories/%E6%8A%80%E6%9C%AF/">
+                  <i class="fa fa-code" aria-hidden="true"></i>
+                  技术
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/%E7%94%9F%E6%B4%BB/">
+                  <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  生活
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/%E8%B5%84%E6%BA%90/">
+                  <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                  资源
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/%E9%9A%8F%E6%83%B3/">
+                  <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                  随想
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/%E8%BD%AC%E8%BD%BD/">
+                  <i class="fa fa-book" aria-hidden="true"></i>
+                  转载
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="javascript:;">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+            清单
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/tags/%E6%82%A6%E8%AF%BB/">
+                  <i class="fa fa-th-list faa-bounce" aria-hidden="true"></i>
+                  书单
+                </a>
+              </li>
+            
+              <li>
+                <a href="/bangumi/">
+                  <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                  番组
+                </a>
+              </li>
+            
+              <li>
+                <a href="/music/">
+                  <i class="fa fa-headphones" aria-hidden="true"></i>
+                  歌单
+                </a>
+              </li>
+            
+              <li>
+                <a href="/tags/%E5%9B%BE%E9%9B%86/">
+                  <i class="fa fa-photo" aria-hidden="true"></i>
+                  图集
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/comment/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+            留言板
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/donate/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-heart faa-pulse" aria-hidden="true"></i>
+            赞赏
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/about/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+            关于
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/about/">
+                  <i class="fa fa-meetup" aria-hidden="true"></i>
+                  我？
+                </a>
+              </li>
+            
+              <li>
+                <a href="/plan/">
+                  <i class="fa fa-meetup" aria-hidden="true"></i>
+                  计划
+                </a>
+              </li>
+            
+              <li>
+                <a href="/animation/">
+                  <i class="fa fa-meetup" aria-hidden="true"></i>
+                  动画
+                </a>
+              </li>
+            
+              <li>
+                <a href="/background/">
+                  <i class="fa fa-meetup" aria-hidden="true"></i>
+                  背景图片
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+  </ul>
+  <p style="text-align: center; font-size: 13px; color: #b9b9b9;">&copy 2019 hexo-sakura</p>
+</div>
+<button onclick="topFunction()" class="mobile-cd-top" id="moblieGoTop" title="Go to top" style="display: none;"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<style>
+  .aplayer .aplayer-lrc {
+    height: 35px;
+  }
+  .aplayer .aplayer-lrc p{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px !important;
+  }
+  .aplayer .aplayer-lrc p.aplayer-lrc-current{
+    color: #FF1493;
+  }
+  .aplayer.aplayer-narrow .aplayer-body{
+    left: -66px !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-lrc {
+    display: none;
+  }
+  .aplayer .aplayer-lrc.aplayer-lrc-hide {
+      display:none !important;
+  }
+  .aplayer.aplayer-fixed .lrc-show {
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+  }
+</style>
+<meting-js
+
+    id="2660651585"
+
+    server="netease"
+
+    type="playlist"
+
+    fixed="true"
+
+    autoplay="false"
+
+    loop="all"
+
+    order="random"
+
+    preload="auto"
+
+    volume="0.7"
+
+    mutex="true"
+
+</meting-js>
+<script>
+  $(function(){
+    $('body').on('click', '.aplayer', function(){
+      if($('.aplayer-button').hasClass('aplayer-play')) {
+        $('.aplayer-lrc').removeClass('lrc-show');
+      } else {
+        $('.aplayer-lrc').addClass('lrc-show');
+      }
+    })
+  });
+</script>
+</body>
+</html>

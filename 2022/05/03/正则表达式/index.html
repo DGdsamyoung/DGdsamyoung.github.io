@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  
+  <title itemprop="name">正则表达式.md | sam young</title>
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  <link rel="stylesheet" id="saukra_css-css" href="/css/style.css" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/lib.min.css" media="all">
+  <link rel="stylesheet" href="/css/font.css" media="all">
+  <link rel="stylesheet" href="/css/insight.css" media="all">
+  <link rel="stylesheet" href="/css/jquery.fancybox.min.css" media="all">
+  <link rel="stylesheet" href="/css/zoom.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<!--   <link rel="stylesheet" id="saukra_css-css" href="https://2heng.xin/wp-content/cache/autoptimize/css/autoptimize_ad42a61f4c7d4bdd9f91afcff6b5dda5.css
+" type="text/css" media="all"> -->
+  <script>
+  /*Initial Variables*/
+  var mashiro_option = new Object();
+  var mashiro_global = new Object();
+  mashiro_option.NProgressON = true;
+  /* 
+   * 邮箱信息之类的东西可以填在这里，这些js变量基本都作用于sakura-app.js
+   * 这样的设置仅是为了方便在基于PHP开发的主题中设置js变量，既然移植到了Node上，我想或许可以精简这一逻辑吧
+   */
+  mashiro_option.email_domain = "";
+  mashiro_option.email_name = "";
+  mashiro_option.cookie_version_control = "";
+  mashiro_option.qzone_autocomplete = false;
+  mashiro_option.site_name = "強记_sam young";
+  mashiro_option.author_name = "sam young";
+  mashiro_option.site_url = "https://blog.csdn.net/young_sam?spm=1011.2124.3001.5343";
+  mashiro_option.v_appId = "GyC3NzMvd0hT9Yyd2hYIC0MN-gzGzoHsz";
+  mashiro_option.v_appKey = "mgOpfzbkHYqU92CV4IDlAUHQ";
+  mashiro_option.mathjax = "0";
+  mashiro_option.qq_api_url = "https://api.mashiro.top/qqinfo/"; 
+  mashiro_option.qq_avatar_api_url = "https://api.mashiro.top/qqinfo/";
+
+  // mashiro_option.jsdelivr_css_src = "https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/css/lib.min.css";
+  // mashiro_option.float_player_on = true;
+
+  /*End of Initial Variables*/
+  </script>
+  <script type="text/javascript">
+  var bg = "".split(",");
+  var bgindex = Math.floor(Math.random()*bg.length);
+  if (!!window.ActiveXObject || "ActiveXObject" in window) { //is IE?
+    alert('朋友，IE浏览器未适配哦~');
+  }
+  </script>
+  <style type="text/css">
+  .hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}
+  </style>
+  <style type="text/css">.site-top .lower nav{display:block !important;}.author-profile i,.post-like a,.post-share .show-share,.sub-text,.we-info a,span.sitename,.post-more i:hover,#pagination a:hover,.post-content a:hover,.float-content i:hover{color:#FE9600}.feature i,.download,.navigator i:hover,.links ul li:before,.ar-time i,span.ar-circle,.object,.comment .comment-reply-link,.siren-checkbox-radio:checked + .siren-checkbox-radioInput:after{background:#FE9600}::-webkit-scrollbar-thumb{background:#FE9600}.download,.navigator i:hover,.link-title,.links ul li:hover,#pagination a:hover,.comment-respond input[type='submit']:hover{border-color:#FE9600}.entry-content a:hover,.site-info a:hover,.comment h4 a,#comments-navi a.prev,#comments-navi a.next,.comment h4 a:hover,.site-top ul li a:hover,.entry-title a:hover,#archives-temp h3,span.page-numbers.current,.sorry li a:hover,.site-title a:hover,i.iconfont.js-toggle-search.iconsearch:hover,.comment-respond input[type='submit']:hover{color:#FE9600}.comments .comments-main{display:block !important;}.comments .comments-hidden{display:none !important;}background-position:center center;background-attachment:inherit;}
+  </style>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
+  <div class="scrollbar" id="bar">
+  </div>
+  <a href="#" class="cd-top faa-float animated"></a>
+  <section id="main-container">
+    <!--
+ * @Description:
+ * @Autor: 杨自强
+ * @Date: 2021-08-25 14:28:34
+ * @LastEditors: 杨自强
+ * @LastEditTime: 2021-09-22 10:10:18
+-->
+<div class="headertop filter-dot">
+  <div id="banner_wave_1"></div>
+  <div id="banner_wave_2"></div>
+  <figure id="centerbg" class="centerbg">
+    <div class="focusinfo no-select">
+      <div class="header-tou">
+        <a target="_blank" rel="noopener" href="https://blog.csdn.net/young_sam?spm=1011.2124.3001.5343">
+          <img src="/images/avatar/my.jpg">
+        </a>
+      </div>
+      <div class="header-info">
+        <p>挖坑日记 sam.young.zq@gmail.com</p>
+        <div class="top-social_v2">
+          <li id="bg-pre">
+            <img class="flipx" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+          
+            
+              
+                <li>
+                  <a href="http://github.com/DGdsamyoung" target="_blank" class="social-github" title="github">
+                    <img src="https://cdn.jsdelivr.net/gh/DGdsamyoung/CDN@1.04/image/social/icon/github.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://weibo.com/3177553564/" target="_blank" class="social-github" title="sina">
+                    <img src="https://cdn.jsdelivr.net/gh/DGdsamyoung/CDN@1.04/image/social/icon/sina.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://blog.csdn.net/young_sam?spm=1011.2124.3001.5343" target="_blank" class="social-github" title="csdn">
+                    <img src="https://cdn.jsdelivr.net/gh/DGdsamyoung/CDN@1.04/image/social/icon/csdn.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="http://weibo.com/mashirozx?is_all=1" target="_blank" class="social-github" title="email">
+                    <img src="https://cdn.jsdelivr.net/gh/DGdsamyoung/CDN@1.04/image/social/icon/email.svg">
+                  </a>
+                </li>
+              
+            
+              
+                <li class="wechat">
+                  <a href="/#">
+                    <img src="https://cdn.jsdelivr.net/gh/DGdsamyoung/CDN@1.04/image/social/icon/wechat.png">
+                  </a>
+                  <div class="wechatInner">
+                    <img src="https://cdn.jsdelivr.net/gh/DGdsamyoung/CDN@1.1/image/social/wechat.png">
+                  </div>
+                </li>
+              
+            
+          
+          <li id="bg-next">
+            <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+        </div>
+      </div>
+    </div>
+  </figure>
+  <div id="video-container" style="">
+    <video style="object-fit: fill" id="bgvideo" class="video" video-name="" src="" width="auto" preload="auto">
+    </video>
+    <div id="video-btn" class="loadvideo videolive">
+    </div>
+    <div id="video-add">
+    </div>
+    <div class="video-stu">
+    </div>
+  </div>
+  <div class="headertop-down faa-float animated" onclick="headertop_down()">
+    <span>
+      <i class="fa fa-chevron-down" aria-hidden="true">
+      </i>
+    </span>
+  </div>
+</div>
+
+    <div id="page" class="site wrapper">
+      <header class="site-header no-select gizle sabit" role="banner">
+  <div class="site-top">
+    <div class="site-branding">
+      <span class="site-title">
+        <span class="logolink moe-mashiro">
+          <a href="/">
+            <span class="sakurasono">強记_</span>
+            <span class="shironeko">sam young</span>
+          </a>
+        </span>
+      </span>
+    </div>
+    <div class="searchbox search-form-submit">
+      <i class="iconfont js-toggle-search iconsearch icon-search">
+      </i>
+    </div>
+    <div id="show-nav" class="showNav mobile-fit">
+      <div class="line line1">
+      </div>
+      <div class="line line2">
+      </div>
+      <div class="line line3">
+      </div>
+    </div>
+    <div class="lower-cantiner">
+      <div class="lower">
+        <nav class="mobile-fit-control hide">
+          <ul id="menu-new" class="menu">
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+                    首页
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+                    归档
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/categories/%E6%8A%80%E6%9C%AF/">
+                          <i class="fa fa-code" aria-hidden="true"></i>
+                          技术
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/%E7%94%9F%E6%B4%BB/">
+                          <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                          生活
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/%E8%B5%84%E6%BA%90/">
+                          <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                          资源
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/%E9%9A%8F%E6%83%B3/">
+                          <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                          随想
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/%E8%BD%AC%E8%BD%BD/">
+                          <i class="fa fa-book" aria-hidden="true"></i>
+                          转载
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="javascript:;">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+                    清单
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/tags/%E6%82%A6%E8%AF%BB/">
+                          <i class="fa fa-th-list faa-bounce" aria-hidden="true"></i>
+                          书单
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/bangumi/">
+                          <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                          番组
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/music/">
+                          <i class="fa fa-headphones" aria-hidden="true"></i>
+                          歌单
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/tags/%E5%9B%BE%E9%9B%86/">
+                          <i class="fa fa-photo" aria-hidden="true"></i>
+                          图集
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="/comment/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+                    留言板
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/donate/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-heart faa-pulse" aria-hidden="true"></i>
+                    赞赏
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/about/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+                    关于
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/about/">
+                          <i class="fa fa-meetup" aria-hidden="true"></i>
+                          我？
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/plan/">
+                          <i class="fa fa-meetup" aria-hidden="true"></i>
+                          计划
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/animation/">
+                          <i class="fa fa-meetup" aria-hidden="true"></i>
+                          动画
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/background/">
+                          <i class="fa fa-meetup" aria-hidden="true"></i>
+                          背景图片
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+<script>
+  function test() {
+      return '123'
+  }
+  console.log(test())
+</script>
+
+
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" src="https://cdn.jsdelivr.net/gh/DGdsamyoung/CDN@1.04/image/loading/orange.progress-bar-stripe-loader.svg" data-src="http://www.dmoe.cc/random.php?time=1651557671000">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      正则表达式.md</h1>
+      <p class="entry-census">
+        <span>
+          <a target="_blank" rel="noopener" href="https://blog.csdn.net/young_sam?spm=1011.2124.3001.5343">
+            <img src="https://cdn.jsdelivr.net/gh/DGdsamyoung/CDN@1.04/image/social/avatar.jpg">
+          </a>
+        </span>
+        <span>
+          <a target="_blank" rel="noopener" href="https://blog.csdn.net/young_sam?spm=1011.2124.3001.5343">sam young</a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2022-5-3<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+    </header>
+  </div>
+
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        <!-- 
+          <header class="entry-header">
+            <h1 class="entry-title">正则表达式.md</h1>
+            <p class="entry-census">sam young&nbsp;·&nbsp;2022-5-3&nbsp;·&nbsp;<span id="busuanzi_value_page_pv"></span>次阅读</p></p>
+
+            <hr>
+          </header>
+         -->
+        <div class="entry-content">
+          <h2 id="正则表达式简介"><a href="#正则表达式简介" class="headerlink" title="正则表达式简介"></a>正则表达式简介</h2><p><strong>定义</strong>：正则表达式用于定义一些字符串的规则。</p>
+<p><strong>作用</strong>：计算机可以根据正则表达式，来检查一个字符串是否符合指定的规则；或者将字符串中符合规则的内容提取出来。</p>
+<p>如果你想查看正则更多的内容，可以查阅官方文档关于 RegExp 这个内置对象的用法。</p>
+<h2 id="创建正则表达式的对象"><a href="#创建正则表达式的对象" class="headerlink" title="创建正则表达式的对象"></a>创建正则表达式的对象</h2><h3 id="方式一：使用构造函数创建正则表达式的对象"><a href="#方式一：使用构造函数创建正则表达式的对象" class="headerlink" title="方式一：使用构造函数创建正则表达式的对象"></a>方式一：使用构造函数创建正则表达式的对象</h3><p>语法：</p>
+<pre><code class="javascript">    var 变量 = new RegExp(&quot;正则表达式&quot;); // 注意，参数是字符串
+
+    var 变量 = new RegExp(&quot;正则表达式&quot;, &quot;匹配模式&quot;); // 注意，两个参数都是字符串
+</code></pre>
+<p>备注：<code>RegExp</code>的意思是 <strong>Regular expression</strong>。使用typeof检查正则对象，会返回object。</p>
+<p>上面的语法中，既可以传一个参数，也可以传两个参数。</p>
+<p>创建了正则表达式的对象后，该怎么使用呢？大致分为两个步骤：</p>
+<ul>
+<li><p>（1）创建正则表达式的对象 reg。</p>
+</li>
+<li><p>（2）使用 reg 的test() 方法，判断指定字符串是否符合规则。</p>
+</li>
+</ul>
+<p><strong>正则表达式的<code>test()</code>方法</strong>：【重要】</p>
+<pre><code class="javascript">    myReg.test(str); // 判断字符串 str 是否符合 指定的 myReg 这个正则表达式的规则
+</code></pre>
+<p>解释：使用<code>test()</code>这个方法可以用来检查一个字符串是否符合正则表达式的规则，<strong>如果符合则返回true，否则返回false</strong>。</p>
+<p>我们来看看下面的例子。</p>
+<p><strong>1、传一个参数时</strong>：</p>
+<p>构造函数 RegExp 中，可以只传一个参数。</p>
+<p>代码举例：</p>
+<pre><code class="javascript">    var reg = new RegExp(&quot;a&quot;); // 定义一个正则表达式：检查一个字符串中是否含有 a
+
+    var str1 = &quot;qianguyihao&quot;;
+    var str2 = &quot;smyh&quot;;
+
+    // 通过 test()方法，判断字符串是否符合 上面定义的 reg 规则
+    console.log(reg.test(str1)); // 打印结果：true
+    console.log(reg.test(str2)); // 打印结果：false
+</code></pre>
+<p>注意，上面的例子中，我们是先定义了一个正则表达式的规则，然后通过正则表达式的<code>test()</code>方法来判断字符串是否符合之前定义的规则。</p>
+<p><strong>2、传两个参数时</strong>：匹配模式 【重要】</p>
+<p>构造函数 RegExp 中，也可以传两个参数。我们可以传递一个<strong>匹配模式</strong>作为第二个参数。这个参数可以是：</p>
+<ul>
+<li><p><code>i</code> 忽略大小写。这里的 i 指的是 ignore。</p>
+</li>
+<li><p><code>g</code> 全局匹配模式。这里的 g 指的是 global。</p>
+</li>
+</ul>
+<p>代码举例：</p>
+<pre><code class="javascript">    var reg = new RegExp(&#39;A&#39;, &#39;i&#39;);
+    var str = &#39;qiangu&#39;;
+
+    console.log(reg.test(str)); // 打印结果：true
+</code></pre>
+<h3 id="方式二：使用字面量创建正则表达式"><a href="#方式二：使用字面量创建正则表达式" class="headerlink" title="方式二：使用字面量创建正则表达式"></a>方式二：使用字面量创建正则表达式</h3><p>我们可以使用字面量来创建正则表达式。</p>
+<p>语法：</p>
+<pre><code class="javascript">    var 变量 = /正则表达式/;  // 注意，这个语法里没有引号
+
+    var 变量 = /正则表达式/匹配模式;  // 注意，这个语法里没有引号
+</code></pre>
+<p>代码举例：</p>
+<pre><code class="javascript">    var reg = /A/i; // 定义正则表达式的规则：检查一个字符串中是否含有 a。忽略大小写。
+    var str = &quot;qiangu&quot;;
+
+    console.log(typeof reg);  // 打印结果：object
+    console.log(reg.test(str)); // 打印结果：true
+</code></pre>
+<h3 id="以上两种方式的对比"><a href="#以上两种方式的对比" class="headerlink" title="以上两种方式的对比"></a>以上两种方式的对比</h3><ul>
+<li><p>方式一：使用构造函数创建时，更加灵活，因为参数中还可以传递变量。</p>
+</li>
+<li><p>方式二：使用字面量的方式创建，更加简单。</p>
+</li>
+</ul>
+<p>代码举例：</p>
+<pre><code class="javascript">    var reg = new RegExp(&quot;a&quot;, &quot;i&quot;); // 方式一
+
+    var reg = /a/i; // 方式二
+</code></pre>
+<p>上面这两行代码的作用是等价的。</p>
+<h3 id="避坑指南：全局匹配-g-慎用test-方法"><a href="#避坑指南：全局匹配-g-慎用test-方法" class="headerlink" title="避坑指南：全局匹配 g 慎用test()方法"></a>避坑指南：全局匹配 g 慎用test()方法</h3><p>对于非全局匹配的正则表达式，<code>test()</code>只会检测<strong>是否存在某个目标字符串</strong>（只要存在就为 true），多次检测的结果都相同。例如：</p>
+<pre><code class="javascript">const reg = /test/;
+const str = &#39;_test_test&#39;;
+
+reg.test(str) // true
+reg.test(str) // true
+reg.test(str) // true
+</code></pre>
+<p>重点来了。</p>
+<p>当设置全局标志 <code>/g</code> 时，一旦字符串中还存在匹配，test() 方法都将返回 true，同时匹配成功后将把 <code>lastIndex</code> 属性的值<strong>设置为上次匹配成功结果之后的第一个字符所在的位置</strong>，下次匹配将从 <code>lastIndex</code> 指示的位置开始；匹配不成功时返回 false，同时将 lastIndex 属性的值重置为 0。</p>
+<p>举例：（很重要的例子，看仔细）</p>
+<pre><code class="javascript">const reg = /test/g;
+const str = &#39;_test_test&#39;;
+
+console.log(reg.test(str)); // true
+console.log(reg.lastIndex); // 5
+
+console.log(reg.test(str)); // true
+console.log(reg.lastIndex); // 10
+
+console.log(reg.test(str)); // false
+console.log(reg.lastIndex); // 0
+</code></pre>
+<p><strong>总结</strong>：</p>
+<p>全局匹配模式<code>g</code>一般用于 <code>exec()</code>、<code>match()</code>、<code>replace()</code>等方法。</p>
+<p>全局匹配模式<code>g</code>如果用于test()方法会有问题。因为g模式会生成一个<code>lastindex</code>参数来存储匹配最后一次的位置。</p>
+<p>参考链接：</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://juejin.im/post/5de9bd5fe51d45582c27b6f3">JS正则表达式全局匹配的那些坑</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Leolu007/article/details/8576490">javascript正则全局匹配g慎用test方法</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/qianguyihao/Web/issues/69">issues</a></p>
+</li>
+</ul>
+<h2 id="正则表达式的简单语法"><a href="#正则表达式的简单语法" class="headerlink" title="正则表达式的简单语法"></a>正则表达式的简单语法</h2><h3 id="检查一个字符串中是否包含-a或b"><a href="#检查一个字符串中是否包含-a或b" class="headerlink" title="检查一个字符串中是否包含 a或b"></a>检查一个字符串中是否包含 a或b</h3><p><strong>写法1</strong>：</p>
+<pre><code class="javascript">    var reg = /a|b/;
+</code></pre>
+<p>解释：使用 <code>|</code> 表示<code>或</code>的意思。</p>
+<p><strong>写法2</strong>：</p>
+<pre><code class="javascript">    var reg = /[ab]/;  // 跟上面的那行语法，是等价的
+</code></pre>
+<p>解释：这里的<code>[]</code>也是表示<code>或</code>的意思。</p>
+<p><code>[]</code>这个符号在正则还是比较常用的。我们接下来看几个例子。</p>
+<h3 id="表示：或"><a href="#表示：或" class="headerlink" title="[]表示：或"></a>[]表示：或</h3><p>一些规则：</p>
+<ul>
+<li><p><code>/[ab]/</code> 等价于 <code>/a|b/</code>：检查一个字符串中是否包含 <strong>a或b</strong></p>
+</li>
+<li><p><code>/[a-z]/</code>：检查一个字符串那种是否包含<strong>任意小写字母</strong></p>
+</li>
+<li><p><code>/[A-Z]/</code>：任意大写字母</p>
+</li>
+<li><p><code>/[A-z]/</code>：任意字母</p>
+</li>
+<li><p><code>/[0-9]/</code>：任意数字</p>
+</li>
+<li><p><code>/a[bde]c/</code>：检查一个字符串中是否包含 abc 或 adc 或 aec</p>
+</li>
+</ul>
+<h3 id="表示：除了"><a href="#表示：除了" class="headerlink" title="[^ ] 表示：除了"></a>[^ ] 表示：除了</h3><p>举例1：</p>
+<pre><code class="javascript">  var reg = /[^ab]/; // 规则：字符串中，除了a、b之外，还有没有其他的字符内容？
+  var str = &quot;acb&quot;;
+
+  console.log(reg.test(str)); // 打印结果：true
+</code></pre>
+<p>举例2：（可以用来验证某字符串是否为 纯数字）</p>
+<pre><code class="javascript">    var reg = /[^0-9]/;  // 规则：字符串中，除了数字之外，还有没有其他的内容？
+    var str1 = &quot;1991&quot;;
+    var str2 = &quot;199a1&quot;;
+
+    console.log(reg.test(str1)); // 打印结果：false （如果字符串是 纯数字，则返回 false）
+    console.log(reg.test(str2)); // 打印结果：true
+</code></pre>
+<h2 id="支持正则表达式的-String-对象的方法"><a href="#支持正则表达式的-String-对象的方法" class="headerlink" title="支持正则表达式的 String 对象的方法"></a>支持正则表达式的 String 对象的方法</h2><p> String对象的如下方法，是支持正则表达式的：</p>
+<table>
+<thead>
+<tr>
+<th align="left">方法</th>
+<th align="left">描述</th>
+<th align="left">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">split()</td>
+<td align="left">将字符串拆分成数组</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">search()</td>
+<td align="left">搜索字符串中是否含有指定内容，返回索引 index</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">match()</td>
+<td align="left">根据正则表达式，从一个字符串中将符合条件的内容提取出来</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">replace()</td>
+<td align="left">将字符串中的指定内容，替换为新的内容并返回</td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<p>下面来分别介绍和举例。</p>
+<h3 id="split"><a href="#split" class="headerlink" title="split()"></a>split()</h3><p><code>split()</code>：将一个字符串拆分成一个数组。可以接受一个正则表达式作为参数。</p>
+<p>备注：关于<code>split()</code>更详细的用法，可以看之前的关于《内置对象：String》这篇文章。</p>
+<p><strong>正则相关的举例</strong>：根据任意字母，将字符串拆分成数组。</p>
+<p>代码实现：（通过正则）</p>
+<pre><code class="javascript">    var str = &quot;1a2b3c4d5e6f7g&quot;;
+
+    var result = str.split(/[A-z]/); // 参数是一个正则表达式：表示所有字母
+    console.log(result);
+</code></pre>
+<p>打印结果：</p>
+<pre><code class="json">    [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot;, &quot;5&quot;, &quot;6&quot;, &quot;7&quot;, &quot;&quot;]
+</code></pre>
+<h3 id="search"><a href="#search" class="headerlink" title="search()"></a>search()</h3><p><code>search()</code>：搜索字符串中是否含有指定内容。如果搜索到指定内容，则会返回第一次出现的索引；否则返回-1。</p>
+<p><code>search()</code>方法可以接受一个正则表达式作为参数，然后会根据正则表达式去检索字符串。<code>serach()</code>只会查找第一个，即使设置全局匹配也没用。</p>
+<p><strong>举例</strong>：</p>
+<pre><code class="javascript">    var str = &quot;hello abc hello aec afc&quot;;
+    /*
+    * 搜索字符串中是否含有abc 或 aec 或 afc
+    */
+    result = str.search(/a[bef]c/);
+    console.log(result); // 打印结果：6
+</code></pre>
+<h3 id="match"><a href="#match" class="headerlink" title="match()"></a>match()</h3><p><code>match()</code>：根据正则表达式，从一个字符串中将符合条件的内容提取出来，封装到一个数组中返回（即使只查询到一个结果）。</p>
+<p><strong>注意</strong>：默认情况下，<code>match()</code>方法只会找到<strong>第一个</strong>符合要求的内容，找到以后就停止检索。我们可以设置正则表达式为<strong>全局匹配</strong>模式，这样就会匹配到所有的内容，并以<strong>数组</strong>的形式返回。</p>
+<p>另外，我们可以为一个正则表达式设置多个匹配模式，且匹配模式的顺序无所谓。</p>
+<p><strong>代码举例</strong>：</p>
+<pre><code class="javascript">    var str = &quot;1a2a3a4a5e6f7A8B9C&quot;;
+
+    var result1 = str.match(/[a-z]/);   // 找到符合要求的第一个内容，然后返回
+    var result2 = str.match(/[a-z]/g);  // 设置为“全局匹配”模式，匹配字符串中 所有的小写字母
+    var result3 = str.match(/[a-z]/gi); // 设置多个匹配模式，匹配字符串中 所有的字母（忽略大小写）
+
+    console.log(result1); // 打印结果：[&quot;a&quot;]
+    console.log(result2); // 打印结果：[&quot;a&quot;, &quot;a&quot;, &quot;a&quot;, &quot;a&quot;, &quot;e&quot;, &quot;f&quot;]
+    console.log(result3); // 打印结果：[&quot;a&quot;, &quot;a&quot;, &quot;a&quot;, &quot;a&quot;, &quot;e&quot;, &quot;f&quot;, &quot;A&quot;, &quot;B&quot;, &quot;C&quot;]
+</code></pre>
+<p><strong>总结</strong>：</p>
+<p>match()这个方法还是很实用的，可以在一个很长的字符串中，提取出<strong>有规则</strong>的内容。这不就是爬虫的时候经常会遇到的场景么？</p>
+<h3 id="replace"><a href="#replace" class="headerlink" title="replace()"></a>replace()</h3><p><code>replace()</code>：将字符串中的指定内容，替换为新的内容并返回。不会修改原字符串。</p>
+<p>语法：</p>
+<pre><code class="javascript">    新的字符串 = str.replace(被替换的内容，新的内容);
+</code></pre>
+<p>参数解释：</p>
+<ul>
+<li><p>被替换的内容：可以接受一个正则表达式作为参数。</p>
+</li>
+<li><p>新的内容：默认只会替换第一个。如果需要替换全部符合条件的内容，可以设置正则表达式为<strong>全局匹配</strong>模式。</p>
+</li>
+</ul>
+<p>代码举例：</p>
+<pre><code class="javascript">    //replace()方法：替换
+    var str2 = &quot;Today is fine day,today is fine day !!!&quot;
+
+    console.log(str2);
+    console.log(str2.replace(&quot;today&quot;,&quot;tomorrow&quot;));  //只能替换第一个today
+    console.log(str2.replace(/today/gi,&quot;tomorrow&quot;)); //这里用到了正则，且为“全局匹配”模式，才能替换所有的today
+</code></pre>
+<h2 id="常见正则表达式举例"><a href="#常见正则表达式举例" class="headerlink" title="常见正则表达式举例"></a>常见正则表达式举例</h2><h3 id="检查一个字符串是否是一个合法手机号"><a href="#检查一个字符串是否是一个合法手机号" class="headerlink" title="检查一个字符串是否是一个合法手机号"></a>检查一个字符串是否是一个合法手机号</h3><p>手机号的规则：</p>
+<ul>
+<li><p>以1开头</p>
+</li>
+<li><p>第二位是3~9之间任意数字</p>
+</li>
+<li><p>三位以后任意9位数字</p>
+</li>
+</ul>
+<p>正则实现：</p>
+<pre><code class="javascript">    var phoneStr = &quot;13067890123&quot;;
+
+    var phoneReg = /^1[3-9][0-9]&#123;9&#125;$/;
+
+    console.log(phoneReg.test(phoneStr));
+</code></pre>
+<p><strong>备注</strong>：如果在正则表达式中同时使用<code>^</code>和<code>$</code>符号，则要求字符串必须完全符合正则表达式。</p>
+<h3 id="去掉字符串开头和结尾的空格"><a href="#去掉字符串开头和结尾的空格" class="headerlink" title="去掉字符串开头和结尾的空格"></a>去掉字符串开头和结尾的空格</h3><p>正则实现：</p>
+<pre><code class="javascript">    str = str.replace(/^\s*|\s*$/g,&quot;&quot;);
+</code></pre>
+<p>解释如下：</p>
+<pre><code class="javascript">    str = str.replace(/^\s*/, &quot;&quot;); //去除开头的空格
+
+    str = str.replace(/\s*$/, &quot;&quot;); //去除结尾的空格
+</code></pre>
+<h3 id="判断字符串是否为电子邮件"><a href="#判断字符串是否为电子邮件" class="headerlink" title="判断字符串是否为电子邮件"></a>判断字符串是否为电子邮件</h3><p>正则实现：</p>
+<pre><code class="javascript">    var emailReg = /^\w&#123;3,&#125;(\.\w+)*@[A-z0-9]+(\.[A-z]&#123;2,5&#125;)&#123;1,2&#125;$/;
+
+    var email = &quot;abchello@163.com&quot;;
+
+    console.log(emailReg.test(email));
+</code></pre>
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/DGdsamyoung/CDN@1.04/image/donate/AliPayQR.png"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/DGdsamyoung/CDN@1.04/image/donate/WeChatQR.png"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+          
+            <div class="post-nepre half previous">
+          
+            <a href="/2022/05/03/git%20%E5%BF%BD%E7%95%A5%E6%96%87%E4%BB%B6%E4%B8%8D%E6%8F%90%E4%BA%A4%E6%96%B9%E6%B3%95%20.gitignore/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="/image/loading/orange.progress-bar-stripe-loader.svg" data-src="http://www.dmoe.cc/random.php?time=1651558297000" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="http://www.dmoe.cc/random.php?time=1651558297000">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                git 忽略文件不提交方法 .gitignore.md</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+        
+          
+            <div class="post-nepre half next">
+          
+            <a href="/2022/05/03/vue%20v-for%20%E7%94%A8%E6%B3%95/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/DGdsamyoung/CDN@1.04/image/loading/orange.progress-bar-stripe-loader.svg" data-src="http://www.dmoe.cc/random.php?time=1651514164000" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="http://www.dmoe.cc/random.php?time=1651514164000">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                vue v-for 用法.md</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
+      
+<div id="vcomments"></div>
+<script>
+  window.onload = function(){
+      var valine = new Valine();
+      valine.init({
+        el: '#vcomments',
+        appId: "GyC3NzMvd0hT9Yyd2hYIC0MN-gzGzoHsz",
+        appKey: "mgOpfzbkHYqU92CV4IDlAUHQ",
+        path: window.location.pathname,
+        placeholder: "你是我一生只会遇见一次的惊喜 ..."
+      })
+  }
+</script>
+
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+          <a target="_blank" rel="noopener" href="https://blog.csdn.net/young_sam?spm=1011.2124.3001.5343" class="profile gravatar"><img src="https://cdn.jsdelivr.net/gh/DGdsamyoung/CDN@1.04/image/social/avatar.jpg" itemprop="image" alt="sam young" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a target="_blank" href="https://blog.csdn.net/young_sam?spm=1011.2124.3001.5343" itemprop="url" rel="author noopener">sam young</a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i>一个好奇的人</p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
+</div>
+
+
+
+    </div>    
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            // PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+    <!--
+ * @Description:
+ * @Autor: 杨自强
+ * @Date: 2021-08-25 14:28:34
+ * @LastEditors: 杨自强
+ * @LastEditTime: 2021-09-22 09:34:59
+-->
+<!-- <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 young<br>
+      powered_by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer> -->
+<footer id="colophon" class="site-footer" role="contentinfo">
+  <div class="site-info">
+    <div class="footertext">
+      <div class="img-preload">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/wordpress-rotating-ball-o.svg">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/disqus-preloader.svg">
+      </div>
+      <p style="color: #666666;">&copy 2022 young</p>
+    </div>
+    <div class="footer-device">
+    <!-- <p style="font-family: 'Ubuntu', sans-serif;">
+        <span style="color: #b9b9b9;">Theme <a href="https://github.com/honjun/hexo-theme-sakura" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Sakura</a> <i class="iconfont icon-sakura rotating" style="color: #ffc0cb;display:inline-block"></i> by <a href="https://2heng.xin/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Mashiro</a>&<a href="https://www.hojun.cn/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Hojun</a>, Powered by Hexo, Hosted by Coding Pages</a>
+        </span>
+      </p> -->
+    </div>
+  </div><!-- .site-info -->
+</footer>
+
+
+
+<!-- <script src="/js/tocbot.js"></script> -->
+<script type="text/javascript" src="/js/lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/InsightSearch.js"></script>
+<script type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
+<script type="text/javascript" src="/js/zoom.min.js"></script>
+<script type="text/javascript" src="/js/sakura-app.js"></script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine@1.3.4/dist/Valine.min.js'></script>
+<script src="/js/botui.js"></script>
+<!-- 不蒜子 网页计数器 -->
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script> -->
+<script type="text/javascript">
+/* <![CDATA[ */
+if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2","name":"Unbroken.mp4","live":"close"},"windowheight":"fixed","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+} else {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2","name":"Unbroken.mp4","live":"open"},"windowheight":"auto","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+}
+/* ]]> */
+
+</script>
+<script>
+$(document).ready(function() {
+  if ($(".toc").length > 0 && document.body.clientWidth > 1200) {
+    if ($(".pattern-center").length > 0) { //有图的情况
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -400,
+          scrollSmoothOffset: -85
+      });
+    } else {
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -85,
+          scrollSmoothOffset: -85
+      });
+    }
+    var offsetTop = $('.toc').offset().top - 95;
+    window.onscroll = function() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      if (scrollTop >= offsetTop) {
+        $('.toc').addClass('toc-fixed');
+      } else {
+        $('.toc').removeClass('toc-fixed');
+      }
+    }
+  }
+});
+</script>
+
+    <div class="openNav no-select" style="height: 50px;">
+      <div class="iconflat no-select" style="width: 50px; height: 50px;">
+        <div class="icon"></div>
+      </div>
+      <div class="site-branding search-form-submit">
+        <i class="iconfont js-toggle-search iconsearch icon-search"></i>
+      </div>
+    </div>
+  </section>
+  <div id="mo-nav" class="">
+  <div class="m-avatar">
+    <img src="https://cdn.jsdelivr.net/gh/DGdsamyoung/CDN@1.04/image/social/avatar.jpg">
+  </div>
+  <p style="text-align: center; color: #333; font-weight: 900; font-family: 'Ubuntu', sans-serif; letter-spacing: 1.5px">強记_sam young</p>
+  <p style="text-align: center; word-spacing: 20px;">
+    
+      
+        <a href="http://github.com/honjun" class="fa fa-github" target="_blank" style="color: #333; margin-left:20px"></a>
+      
+        <a href="http://weibo.com/mashirozx?is_all=1" class="fa fa-weibo" target="_blank" style="color: #dd4b39; margin-left:20px"></a>
+      
+        <a href="https://wpa.qq.com/msgrd?v=3&uin=954655431&site=qq&menu=yes" class="fa fa-qq" target="_blank" style="color: #25c6fe; margin-left:20px"></a>
+      
+    
+  </p>
+  <ul id="menu-new-1" class="menu">
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+            首页
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/archives">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+            归档
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/categories/%E6%8A%80%E6%9C%AF/">
+                  <i class="fa fa-code" aria-hidden="true"></i>
+                  技术
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/%E7%94%9F%E6%B4%BB/">
+                  <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  生活
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/%E8%B5%84%E6%BA%90/">
+                  <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                  资源
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/%E9%9A%8F%E6%83%B3/">
+                  <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                  随想
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/%E8%BD%AC%E8%BD%BD/">
+                  <i class="fa fa-book" aria-hidden="true"></i>
+                  转载
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="javascript:;">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+            清单
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/tags/%E6%82%A6%E8%AF%BB/">
+                  <i class="fa fa-th-list faa-bounce" aria-hidden="true"></i>
+                  书单
+                </a>
+              </li>
+            
+              <li>
+                <a href="/bangumi/">
+                  <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                  番组
+                </a>
+              </li>
+            
+              <li>
+                <a href="/music/">
+                  <i class="fa fa-headphones" aria-hidden="true"></i>
+                  歌单
+                </a>
+              </li>
+            
+              <li>
+                <a href="/tags/%E5%9B%BE%E9%9B%86/">
+                  <i class="fa fa-photo" aria-hidden="true"></i>
+                  图集
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/comment/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+            留言板
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/donate/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-heart faa-pulse" aria-hidden="true"></i>
+            赞赏
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/about/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+            关于
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/about/">
+                  <i class="fa fa-meetup" aria-hidden="true"></i>
+                  我？
+                </a>
+              </li>
+            
+              <li>
+                <a href="/plan/">
+                  <i class="fa fa-meetup" aria-hidden="true"></i>
+                  计划
+                </a>
+              </li>
+            
+              <li>
+                <a href="/animation/">
+                  <i class="fa fa-meetup" aria-hidden="true"></i>
+                  动画
+                </a>
+              </li>
+            
+              <li>
+                <a href="/background/">
+                  <i class="fa fa-meetup" aria-hidden="true"></i>
+                  背景图片
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+  </ul>
+  <p style="text-align: center; font-size: 13px; color: #b9b9b9;">&copy 2019 hexo-sakura</p>
+</div>
+<button onclick="topFunction()" class="mobile-cd-top" id="moblieGoTop" title="Go to top" style="display: none;"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<style>
+  .aplayer .aplayer-lrc {
+    height: 35px;
+  }
+  .aplayer .aplayer-lrc p{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px !important;
+  }
+  .aplayer .aplayer-lrc p.aplayer-lrc-current{
+    color: #FF1493;
+  }
+  .aplayer.aplayer-narrow .aplayer-body{
+    left: -66px !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-lrc {
+    display: none;
+  }
+  .aplayer .aplayer-lrc.aplayer-lrc-hide {
+      display:none !important;
+  }
+  .aplayer.aplayer-fixed .lrc-show {
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+  }
+</style>
+<meting-js
+
+    id="2660651585"
+
+    server="netease"
+
+    type="playlist"
+
+    fixed="true"
+
+    autoplay="false"
+
+    loop="all"
+
+    order="random"
+
+    preload="auto"
+
+    volume="0.7"
+
+    mutex="true"
+
+</meting-js>
+<script>
+  $(function(){
+    $('body').on('click', '.aplayer', function(){
+      if($('.aplayer-button').hasClass('aplayer-play')) {
+        $('.aplayer-lrc').removeClass('lrc-show');
+      } else {
+        $('.aplayer-lrc').addClass('lrc-show');
+      }
+    })
+  });
+</script>
+</body>
+</html>
